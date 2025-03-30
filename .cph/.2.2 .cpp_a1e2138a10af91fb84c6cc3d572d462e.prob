@@ -1,0 +1,1 @@
+{"name":"Local: 2","url":"d:\\CODE C++ PTIT\\TRR2\\2.2 .cpp","tests":[{"id":1743349158622,"input":"1\n4 4 2 4\n1 2\n1 4\n2 3\n3 4","output":""},{"id":1743349199502,"input":"2\n4 4 1 4\n1 2\n1 4\n2 3\n3 4","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CODE C++ PTIT\\TRR2\\2.2 .cpp","group":"local","local":true}
