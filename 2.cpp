@@ -21,7 +21,7 @@ int main(){
 		}	
 	}
     if(t==2){	    
-		cout<<n<<endl;
+		
 		int b[n];
 		for(int i=0;i<n;i++){
 			int count=0;
