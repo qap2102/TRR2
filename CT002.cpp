@@ -17,29 +17,6 @@ int dem=0;
 int a[MAXN][MAXN];
 set<int> adj[MAXN];
 
-void dfs(int u){
-    visited[u]=true;
-    for(int i=1;i<=n;++i){
-        if(!visited[i]){
-            
-            dfs(i);
-        }
-    }
-
-}
-bool kiemtra(){
-    int ans=0;
-    memset(visited,false,sizeof(visited));
-    for(int i=1;i<=n;++i){
-        if(!visited[i]){
-            ++ans;
-            dfs(i);
-        }
-    }
-    if(ans==1) return true;
-    else return false;
-}
-
 void bfs(int u){
     memset(visited,false,sizeof(visited));
     queue<int> q;
@@ -90,26 +67,30 @@ bool half_euler(){
 
 void euler_cycle(int v){
     stack<int> st;
-    vector<int> ec;
+    vector<int> ce;
     st.push(v);
     while(!st.empty()){
-        int x = st.top();
-        if(adj[x].size()!=0){
-            int y = *adj[x].begin();
-            st.push(y);
-            adj[x].erase(y);
-            adj[y].erase(x);
- 
+        int s = st.top();
+        int kt=0;
+        for(int i=1;i<=n;++i){
+            if(a[s][i]){
+                st.push(i);
+                kt=1;
+                a[s][i]=a[i][s]=0;
+                break;
+            }
         }
-        else {
+        if(!kt) {
             st.pop();
-            ec.push_back(x);
+            ce.push_back(s);
         }
+        
+
+
     }
-    reverse(ec.begin(),ec.end());
-    for(int x:ec){
- 
-        cout<<x<<" ";
+    reverse(ce.begin(),ce.end());
+    for(auto it:ce){
+        cout<<it<<" ";
     }
 }
 
@@ -119,52 +100,29 @@ int main(){
 	// freopen("CT.OUT", "w", stdout);
     int t;
     cin>>t;
-    
     if(t==1){
-        cin>>n>>m;
+        cin>>n;
         for(int i=1;i<=n;++i){
             for(int j=1;j<=n;++j){
-                a[i][j]=0;
+                cin>>a[i][j];
             }
         }
-        for(int i=1;i<=m;++i){
-            int x,y;
-            cin>>x>>y;
-            a[x][y]=1;
-            a[y][x]=1;
-        }
-        // if(kiemtra()){
-        //     int cnt=0;
-        //     int kt=0;
-        //     for(int i=1;i<=n;++i){
-        //         if(degree[i]%2!=0){
-        //             cnt++;
-        //             kt=1;
-        //         }
-        //     }
-        //     if(kt==0) cout<<"1";
-        //     else if(cnt==0||cnt==2) cout<<"2";
-        //     else cout<<"0";
-        // }
-        // else cout<<"0";
-        
         bfs(1);
         if(euler()) cout<<"1";
         else if(half_euler()) cout<<"2";
         else cout<<"0";
-    }
-    else {
-        cin>>n>>m>>u;
-        adj->clear();
-        for(int i=1;i<=m;++i){
-            int x,y;
-            cin>>x>>y;
-            adj[x].insert(y);
-            adj[y].insert(x);
-        }
-        euler_cycle(u);
 
     }
+    else {
+        cin>>n>>u;
+        for(int i=1;i<=n;++i){
+            for(int j=1;j<=n;++j){
+                cin>>a[i][j];
+            }
+        }
+        euler_cycle(u);
+    }
+    
 }
 
 
