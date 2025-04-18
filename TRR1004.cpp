@@ -17,17 +17,17 @@ int a[1001][1001];
 vector<int> b;
 int main(){
 	faster;
-    ifstream fin("DT.INP");
-	ofstream fout("DT.OUT");
+    freopen("DT.INP", "r", stdin);
+	freopen("DT.OUT", "w", stdout);
     int t;
-    fin>>t;
+    cin>>t;
 
-	fin>>n>>m;
+	cin>>n>>m;
     
 	for(int i=1;i<=m;++i){
         
 		int x,y;
-		fin>>x>>y;
+		cin>>x>>y;
 		a[x][y]=a[y][x]=1;
         
 	}
@@ -42,20 +42,19 @@ int main(){
             b.push_back(cnt);
         }
         for(auto it:b){
-            fout<<it<<" ";
+            cout<<it<<" ";
         }
     }
     else if(t==2){
-        fout<<n<<endl;
+        cout<<n<<endl;
         for(int i=1;i<=n;++i){
             for(int j=1;j<=n;++j){
-                fout<<a[i][j]<<" ";
+                cout<<a[i][j]<<" ";
             }
-            fout<<endl;
+            cout<<endl;
         }
     }
-    fin.close();
-	fout.close();
+    
 	// for(int i=1;i<=n;++i){
 	// 	for(int j=1;j<=n;++j){
 	// 		cout<<a[i][j]<<" ";

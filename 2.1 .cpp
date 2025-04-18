@@ -93,6 +93,8 @@ void path1(int u, int v){
 
 int main(){
     faster;
+    freopen("TK.INP", "r", stdin);
+	freopen("TK.OUT", "w", stdout);
     int t;
     cin>>t;
     cin>>n>>u>>v;

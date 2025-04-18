@@ -10,9 +10,14 @@ using namespace std;
 const int MOD = 1e9+7;
 const int N=1e6+5;
 
-int a[1001][1001];
-vector<int> adj[1001];
-vector<int> b;
+const int MAXN=1001;
+
+int n;
+int a[MAXN][MAXN];
+vector<int> adj[MAXN];
+vector<pair<int,int>> vp;
+
+
 
 
 int main(){
@@ -21,50 +26,33 @@ int main(){
 	freopen("DT.OUT", "w", stdout);
     int t;
     cin>>t;
-    int n;
     cin>>n;
     for(int i=1;i<=n;++i){
-        int cnt=0;
         for(int j=1;j<=n;++j){
             cin>>a[i][j];
-            if(a[i][j]){
-                ++cnt;
-            }
         }
-        b.push_back(cnt);
-
     }
     if(t==1){
-        
-        for(auto it:b){
-            cout<<it<<" ";
-        }
-    }
-    else {
-        cout<<n<<endl;
-        int c[n];
         for(int i=1;i<=n;++i){
             int cnt=0;
             for(int j=1;j<=n;++j){
-                if(a[i][j]){
-                    ++cnt;
-                    adj[i].push_back(j);
+                if(a[i][j]) ++cnt;
+            }
+            cout<<cnt<<" ";
+        }
+    }
+    else {
+        vp.clear();
+        for(int i=1;i<=n;++i){
+            for(int j=1;j<=n;++j){
+                if(a[i][j]&&i<j){
+                    vp.push_back({i,j});
                 }
             }
-            c[i]=cnt;
         }
-        for(int i=1;i<=n;++i){
-            cout<<c[i]<<" ";
-            for(auto k:adj[i]){
-                cout<<k<<" ";
-            }
-            cout<<endl;
+        cout<<n<<" "<<vp.size()<<endl;
+        for(auto it:vp){
+            cout<<it.fi<<" "<<it.se<<endl;
         }
     }
-    b.clear();
-    for(int i=1;i<=1001;++i){
-        adj[i].clear();
-    }
-    
-
 }

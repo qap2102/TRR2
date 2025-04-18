@@ -20,6 +20,7 @@ vector<pair<int,int>> check;
 
 void nhap(){
     cin>>n>>m;
+    
     for(int i=0;i<m;++i){
         int x,y;
         cin>>x>>y;
